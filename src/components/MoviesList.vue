@@ -41,9 +41,7 @@ export default {
 	},
   watch: {
     searchTerm(newVal) {
-      if (newVal.length > 0) {
-        this.filterByTerm(newVal);
-      }
+      this.filterByTerm(newVal);
     },
     moviesList(newVal) {
       this.filteredMovieList = newVal;
@@ -51,9 +49,9 @@ export default {
   },
   methods: {
     filterByTerm(term) {
-      if (term && term.length > 0) {
+      if (term && term.length >= 1) {
         this.filteredMovieList = this.moviesList.filter(movie => movie.name.toLowerCase().includes(this.searchTerm.toLowerCase()))
-      } else {
+      } else if (!term) {
         this.filteredMovieList = this.moviesList;
       }
     }
